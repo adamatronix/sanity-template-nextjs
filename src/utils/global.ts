@@ -3,29 +3,6 @@ import { media } from 'utils/mediaQuery';
 
 export const GlobalStyle = createGlobalStyle`
 
-  * {
-    box-sizing: border-box;
-  }
-
-  html, 
-  body {
-    overscroll-behavior: none;
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: "Neue Montreal",Arial,Helvetica Neue,Helvetica,sans-serif;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
   :root {
     --theme-black: 34, 34, 34;
     --theme-background: 246, 246, 246;
@@ -58,6 +35,29 @@ export const GlobalStyle = createGlobalStyle`
   ::selection {
     background: rgb(var(--theme-black));
     color: rgb(var(--theme-white));
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, 
+  body {
+    overscroll-behavior: none;
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--theme-font-default);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 
 `;
