@@ -1,7 +1,7 @@
 import {GetStaticProps} from 'next'
 import {PreviewSuspense} from 'next-sanity/preview'
 
-import {HomePage} from '../page/HomePage'
+import {AboutPage} from '../page/AboutPage'
 import {LazyPreviewPage} from '../page/LazyPreviewPage'
 import {LoadingScreen} from '../page/LoadingScreen'
 import {PAGE_DATA_QUERY} from '../page/query'
@@ -62,5 +62,5 @@ export default function Page(props: PageProps) {
     )
   }
 
-  return <HomePage data={data} />
+  return <AboutPage data={data} />
 }
