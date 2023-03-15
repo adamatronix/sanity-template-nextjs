@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap&text=⟶↑→↓←✗✓');
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style:  normal;
+  font-variation-settings: "wght" 450;
+  font-display: swap;
+  src: url("/fonts/NeueMontreal/PPNeueMontreal-Variable.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-style:  italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/NeueMontreal/neuemontreal-regularitalic-webfont.woff2") format("woff2"),
+      url("/fonts/NeueMontreal/neuemontreal-regularitalic-webfont.woff") format("woff");
+}
