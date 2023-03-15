@@ -1,5 +1,6 @@
 import '../fonts.css'
 
+import { SiteProvider } from 'context/site-context';
 import {AppProps} from 'next/app'
 import { useRouter } from 'next/router';
 import { useEffect, useRef,useState } from 'react';
@@ -92,7 +93,7 @@ export default function App({Component, pageProps}: AppProps) {
   }, [router])
 
   return (
-    <>
+    <SiteProvider>
       <GlobalStyle />
       { transitions((props, item) => {
         return (
@@ -102,6 +103,6 @@ export default function App({Component, pageProps}: AppProps) {
         )
         
       }) }
-    </>
+    </SiteProvider>
   )
 }
