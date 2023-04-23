@@ -11,6 +11,7 @@
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "ES2017",
     "module": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
