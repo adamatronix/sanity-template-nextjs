@@ -1,5 +1,4 @@
-import { Link } from 'components/Link/Link'
-
+import { Link } from '../components/Link/Link'
 import {PageData} from './types'
 export function AboutPage(props: {data: PageData | null}) {
   const {data} = props

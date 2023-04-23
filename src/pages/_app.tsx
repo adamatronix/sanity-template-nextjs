@@ -1,12 +1,13 @@
 import '../fonts.css'
 
-import { SiteProvider } from 'context/site-context';
 import {AppProps} from 'next/app'
 import { useRouter } from 'next/router';
 import { useEffect, useRef,useState } from 'react';
 import { animated,useTransition } from 'react-spring'
 import styled from 'styled-components';
-import { GlobalStyle } from 'utils/global';
+
+import { SiteProvider } from '../context/site-context';
+import { GlobalStyle } from '../utils/global';
 
 /**
  * Absolute panels since each route must lay on top of each other.
