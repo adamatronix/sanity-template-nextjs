@@ -1,7 +1,7 @@
-import { Link } from 'components/Link/Link'
-import { SiteContext } from 'context/site-context';
 import React from 'react';
 
+import { Link } from '../components/Link/Link'
+import { SiteContext } from '../context/site-context';
 import {PageData} from './types'
 
 export function HomePage(props: {data: PageData | null}) {

@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
-import { media } from 'utils/mediaQuery';
+
+import { media } from './mediaQuery';
 
 export const type = (type:string) => {
 

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { media } from 'utils/mediaQuery';
+
+import { media } from './mediaQuery';
 
 export const GlobalStyle = createGlobalStyle`
 
