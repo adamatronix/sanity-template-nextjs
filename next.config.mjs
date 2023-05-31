@@ -20,6 +20,7 @@ const config = {
     return config
   },
   reactStrictMode: true,
+  swcMinify: false
 }
 
 export default config

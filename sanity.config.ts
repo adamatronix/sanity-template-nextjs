@@ -1,5 +1,6 @@
 import {visionTool} from '@sanity/vision'
 import {Config, defineConfig} from 'sanity'
+import {tags} from 'sanity-plugin-tags'
 
 import {dataset, projectId} from './src/sanity/env'
 import {deskTool} from './src/sanity/lib/desk'
@@ -12,5 +13,5 @@ export default defineConfig<Config>({
   schema,
   title: 'Next.js Template',
 
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool(), visionTool(), tags({})],
 })
