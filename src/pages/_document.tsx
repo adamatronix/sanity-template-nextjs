@@ -33,20 +33,20 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="apple-touch-icon" sizes="180x180" href="/Handl_Meta_01_appleicon_180.png"/>
-          <link rel="icon" type="image/png" sizes="192x192" href="/Handl_Meta_01_png_192.png"/>
-          <link rel="icon" type="image/png" sizes="128x128" href="/Handl_Meta_01_png_128.png"/>
-          <link rel="icon" type="image/png" sizes="32x32" href="/Handl_Meta_01_png_32.png"/>
-          <link rel="icon" type="image/png" sizes="16x16" href="/Handl_Meta_01_png_16.png"/>
-          <meta name="theme-color" content="#F4E9D9" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon_180.png"/>
+          <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"/>
+          <link rel="icon" type="image/png" sizes="128x128" href="/icon-128.png"/>
+          <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png"/>
+          <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png"/>
+          <meta name="theme-color" content="#FD593D" />
           <meta property="og:type" content="website" key="type"/>
           <meta property="og:image" content="/og_image.jpg" />
-          <meta property="og:url" content="https://handl.media" />
-          <meta property="og:description" content={'As a creative agency led by digitally empowered people, we pride ourselves on our ability to help brands connect audiences with engaging content. We focus on creating trending, up-to-date content optimised for the ever-changing media landscape.'}  key="description"/>
-          <meta property="twitter:title" content={`Handl Media`} key="twittertitle" />
+          <meta property="og:url" content="https://starter.automaticengineering.com" />
+          <meta property="og:description" content={'Automatic Engineering is a digital product design and engineering agency based in Hong Kong. We partner with ambitious companies to create websites, digital experiences, and native apps that unlock your next stage of growth.'}  key="description"/>
+          <meta property="twitter:title" content={'@automaticengineering'} key="twittertitle" />
           <meta property="twitter:image" content="/og_image.jpg" />
-          <meta property="twitter:image:alt" content="As a creative agency led by digitally empowered people, we pride ourselves on our ability to help brands connect audiences with engaging content. We focus on creating trending, up-to-date content optimised for the ever-changing media landscape." />
-          <meta property="twitter:description" content='As a creative agency led by digitally empowered people, we pride ourselves on our ability to help brands connect audiences with engaging content. We focus on creating trending, up-to-date content optimised for the ever-changing media landscape.' key="twitterdescription" />
+          <meta property="twitter:image:alt" content="Automatic Engineering is a digital product design and engineering agency based in Hong Kong. We partner with ambitious companies to create websites, digital experiences, and native apps that unlock your next stage of growth." />
+          <meta property="twitter:description" content='Automatic Engineering is a digital product design and engineering agency based in Hong Kong. We partner with ambitious companies to create websites, digital experiences, and native apps that unlock your next stage of growth.' key="twitterdescription" />
         </Head>
         <body className="bg-white text-black dark:bg-black dark:text-white">
           <Main />
