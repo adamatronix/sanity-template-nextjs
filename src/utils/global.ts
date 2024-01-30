@@ -27,10 +27,10 @@ export const GlobalStyle = createGlobalStyle`
     --article-primary: var(--theme-black);
     --article-secondary: var(--theme-white);
 
-    ${() => media("small")(`
+    ${media.small`
       --theme-gutter: 20px;
       --theme-container-radius: 16px;
-    `)}
+    `}
   }
 
   ::selection {

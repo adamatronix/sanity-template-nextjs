@@ -61,16 +61,16 @@ const ResponsiveWrapper = styled.div`
 
 const ResponsiveDesktop = styled.div`
   display: none;
-  ${() => media("small")(`
+  ${media.small`
     display: block;
-  `)}
+  `}
 `
 
 const ResponsiveMobile = styled.div`
   display: block;
-  ${() => media("small")(`
+  ${media.small`
     display: none;
-  `)}
+  `}
 `
 
 export const ResponsiveImage = ({
