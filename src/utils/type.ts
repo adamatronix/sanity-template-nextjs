@@ -1,7 +1,4 @@
 import { css } from 'styled-components';
-
-import { media } from './mediaQuery';
-
 export const type = (type:string) => {
 
   const types = {
@@ -19,11 +16,6 @@ export const type = (type:string) => {
       font-weight: normal;
       font-size: 26px;
       line-height: 32px;
-
-      ${() => media("small")(`
-        font-size: 30px;
-        line-height: 36px;
-      `)}
     `,
     heading04: css`
       font-weight: normal;
@@ -34,11 +26,6 @@ export const type = (type:string) => {
       font-weight: normal;
       font-size: 20px;
       line-height: 26px;
-
-      ${() => media("small")(`
-        font-size: 24px;
-        line-height: 32px;
-      `)}
     `,
     sub02: css`
       font-weight: normal;
