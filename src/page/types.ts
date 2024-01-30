@@ -9,5 +9,6 @@ export interface PageElement {
 export interface PageData {
   title?: string
   slug?: {current?: string}
+  image: any
   content?: PageElement[]
 }
