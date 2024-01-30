@@ -49,6 +49,12 @@ export const pageType = defineType({
     }),
 
     defineField({
+      type: 'featuredImage',
+      name: 'image',
+      title: 'Image',
+    }),
+
+    defineField({
       type: 'array',
       name: 'content',
       title: 'Content',
