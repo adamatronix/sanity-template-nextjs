@@ -51,7 +51,8 @@ export const articleType = defineType({
         { type: 'articleCarousel' },
         { type: 'articleCopyBody' },
         { type: 'articleVideo' },
-        { type: 'articleImage90' },
+        { type: 'articleImage100' },
+        { type: 'articleImageInline' },
         { type: 'articleImage50' },
         { type: 'articleImage5050' }
       ]

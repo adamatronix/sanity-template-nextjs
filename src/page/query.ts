@@ -39,3 +39,129 @@ export const PAGE_PATHS_QUERY = groq`
     'slug': slug.current
   }
 `
+
+export const ARTICLE_PATHS_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
+    'slug': slug.current
+  }
+`
+
+
+export const ARTICLE_DATA_QUERY = groq`
+  *[_type == 'article' && slug.current == $slug][0]{
+    ...,
+    hero {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+    articleModules[] {
+      _type == 'articleCarousel' => {
+         _key,
+         _type,
+         stack,
+         images[] {
+           alt,
+           asset->{
+             ...,
+             metadata
+           }
+         }
+       }, 
+       _type == 'articleCopyBody' => {
+        ...
+       },
+       _type == 'articleImage50' => {
+         ...,
+         image {
+           desktopFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           },
+           mobileFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           }
+         }
+       },
+       _type == 'articleImage5050' => {
+         ...,
+         images[] {
+           ...,
+           desktopFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           },
+           mobileFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           }
+         }
+       },
+       _type == 'articleImageInline' => {
+        ...,
+        image {
+          desktopFeatured {
+            alt,
+            asset->{
+              ...,
+              metadata
+            }
+          },
+          mobileFeatured {
+            alt,
+            asset->{
+              ...,
+              metadata
+            }
+          }
+        }
+      },
+       _type == 'articleImage100' => {
+         ...,
+         image {
+           desktopFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           },
+           mobileFeatured {
+             alt,
+             asset->{
+               ...,
+               metadata
+             }
+           }
+         }
+       },
+       _type == 'articleVideo' => {
+         ...
+       },
+    }
+  }
+`

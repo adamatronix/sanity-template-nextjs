@@ -12,3 +12,13 @@ export interface PageData {
   image: any
   content?: PageElement[]
 }
+
+export interface ArticleData {
+  publishedAt?: string
+  slug?: {current?: string}
+  title: string
+  subtitle?: string
+  summary?: any
+  hero?: any
+  articleModules?: any[]
+}
