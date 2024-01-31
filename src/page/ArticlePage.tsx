@@ -1,16 +1,14 @@
 import {ArticleData} from './types'
+import { articleBuilder } from 'components/Article/Article'
 
 export function ArticlePage(props: {data: ArticleData | null}) {
   const {data} = props
 
+  console.log(data);
   return (
-    <div className="p-5">
-      <div className="max-w-xl m-auto">
-        <div className="prose dark:prose-invert">
-          <h1 className="text-xl font-extrabold tracking-tight">{data?.title}</h1>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      </div>
-    </div>
+    <>
+      { articleBuilder(data?.articleModules) }
+    </>
+    
   )
 }

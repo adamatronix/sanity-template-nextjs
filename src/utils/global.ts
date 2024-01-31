@@ -19,7 +19,8 @@ export const GlobalStyle = createGlobalStyle`
 
     --theme-container-radius: 8px;
     --theme-gutter: 16px;
-    --theme-section-margin: 120px;
+    --theme-section-margin: 60px;
+    --theme-section-mb-margin: 60px;
 
     --theme-font-default: "Neue Montreal",Arial,Helvetica Neue,Helvetica,sans-serif;
     --theme-font-icon: 'Inter';
