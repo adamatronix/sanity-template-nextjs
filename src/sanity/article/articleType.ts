@@ -20,6 +20,12 @@ export const articleType = defineType({
       to: [{type: 'author'}]
     }),
     defineField({
+      title: 'Category',
+      name: 'category',
+      type: 'reference',
+      to: [{type: 'category'}]
+    }),
+    defineField({
       type: 'string',
       name: 'title',
       title: 'Title',

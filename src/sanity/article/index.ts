@@ -1,5 +1,6 @@
 export * from './articleAuthorType'
 export * from './articleCarousel'
+export * from './articleCategoryType'
 export * from './articleCopyBody'
 export * from './articleImage50'
 export * from './articleImage100'

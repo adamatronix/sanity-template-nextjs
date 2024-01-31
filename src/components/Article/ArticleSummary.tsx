@@ -37,7 +37,7 @@ export const ArticleSummary = ({
 }: ArticleSummaryProps) => {
 
   return (
-    <Wrapper href={`article/${data.slug}`} {...props}>
+    <Wrapper href={`/article/${data.slug}`} {...props}>
       <ImageWrapper>
         <ResponsiveImage image={data.summary} isCover/>
       </ImageWrapper>
