@@ -8,6 +8,8 @@ import { fontstack } from 'utils/fontstack';
 import { media } from 'utils/mediaQuery';
 import { type } from 'utils/type';
 
+import { articleComponents } from './ArticleRichText';
+
 
 const moduleSelector = {
   articleCopyBody: (data:any) => {
@@ -333,7 +335,7 @@ export const ArticleBodyText = ({
 }: ArticleBodyTextProps) => {
   return (
     <ContainSection {...props}>
-      <SanityPortable blocks={content}/>
+      <SanityPortable blocks={content} components={articleComponents}/>
     </ContainSection>
   )
 }
