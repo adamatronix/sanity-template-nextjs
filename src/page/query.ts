@@ -65,6 +65,37 @@ export const ALL_ARTICLE_DATA_QUERY = groq`
   }
 `
 
+export const ARTICLE_CATEGORY_DATA_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && category._ref in *[_type == 'category' && slug.current == $slug]._id]{
+    publishedAt,
+    title,
+    subtitle,
+    'slug': slug.current,
+    summary {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+  }
+`
+
+export const ARTICLE_CATEGORY_PATHS_QUERY = groq`
+  *[_type == 'category' && defined(slug.current)]{
+    'slug': slug.current
+  }
+`
+
 
 export const ARTICLE_PATHS_QUERY = groq`
   *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
