@@ -41,7 +41,7 @@ export const PAGE_PATHS_QUERY = groq`
 `
 
 export const ARTICLE_PATHS_QUERY = groq`
-  *[_type == 'article' && defined(slug.current)]{
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
     'slug': slug.current
   }
 `
