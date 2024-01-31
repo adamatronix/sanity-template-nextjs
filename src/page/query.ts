@@ -40,6 +40,32 @@ export const PAGE_PATHS_QUERY = groq`
   }
 `
 
+export const ALL_ARTICLE_DATA_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
+    publishedAt,
+    title,
+    subtitle,
+    'slug': slug.current,
+    summary {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+  }
+`
+
+
 export const ARTICLE_PATHS_QUERY = groq`
   *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
     'slug': slug.current
