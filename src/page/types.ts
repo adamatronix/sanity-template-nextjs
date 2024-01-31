@@ -22,3 +22,11 @@ export interface ArticleData {
   hero?: any
   articleModules?: any[]
 }
+
+export interface ArticleSummaryData {
+  publishedAt?: string
+  slug?: {current?: string}
+  title: string
+  subtitle?: string
+  summary?: any
+}

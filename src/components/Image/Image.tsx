@@ -55,10 +55,6 @@ interface ResponsiveImageProps {
   sizes?:string
 }
 
-const ResponsiveWrapper = styled.div`
-  
-`
-
 const ResponsiveDesktop = styled.div`
   display: none;
   ${media.small`
@@ -73,20 +69,36 @@ const ResponsiveMobile = styled.div`
   `}
 `
 
+const ResponsiveWrapper = styled.div<{$fill?:boolean}>`
+  position: relative;
+  width: 100%;
+  height: ${props => props.$fill ? '100%' : 'auto'};
+
+
+  & ${ResponsiveDesktop},
+  & ${ResponsiveMobile} {
+    position: relative;
+    width: 100%;
+    height: ${props => props.$fill ? '100%' : 'auto'};
+  }
+`
+
 export const ResponsiveImage = ({
   image,
+  isCover,
+  isContain,
   ...props
 }: ResponsiveImageProps) => {
   const mobile = image?.mobileFeatured;
   const desktop = image?.desktopFeatured;
 
   return (
-    <ResponsiveWrapper>
+    <ResponsiveWrapper $fill={isCover || isContain}>
       { desktop && <ResponsiveDesktop>
-        <Image image={desktop} alt={desktop.alt} {...props}/>
+        <Image image={desktop} alt={desktop.alt} isCover={isCover} isContain={isContain} {...props}/>
       </ResponsiveDesktop> }
       { mobile && <ResponsiveMobile>
-        <Image image={mobile} alt={mobile.alt} {...props}/>
+        <Image image={mobile} alt={mobile.alt} isCover={isCover} isContain={isContain} {...props}/>
       </ResponsiveMobile> }
     </ResponsiveWrapper>
   )
