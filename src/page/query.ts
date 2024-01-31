@@ -121,7 +121,26 @@ export const ARTICLE_DATA_QUERY = groq`
            }
          }
        },
-       _type == 'articleImage90' => {
+       _type == 'articleImageInline' => {
+        ...,
+        image {
+          desktopFeatured {
+            alt,
+            asset->{
+              ...,
+              metadata
+            }
+          },
+          mobileFeatured {
+            alt,
+            asset->{
+              ...,
+              metadata
+            }
+          }
+        }
+      },
+       _type == 'articleImage100' => {
          ...,
          image {
            desktopFeatured {

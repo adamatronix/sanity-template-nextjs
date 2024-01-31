@@ -36,9 +36,9 @@ const moduleSelector = {
   },
   articleImage50: (data:any) => {
 
-    if(data.video)
+    if(data.video.video)
       return (
-        <ArticleImage50 videosrc={data.video?.desktopVideo} bottomMargin={!data.stack} sanityImage={data?.image?.desktopFeatured}/>
+        <ArticleImage50 videosrc={data.video?.video} bottomMargin={!data.stack} sanityImage={data?.image}/>
       );
 
     if(data.image)
@@ -48,15 +48,26 @@ const moduleSelector = {
     
     return null;
   },
-  articleImage100: (data:any) => {
-    if(data.video)
+  articleImageInline: (data:any) => {
+    if(data.video.video)
       return (
-        <ArticleImage100 videosrc={data.video?.desktopVideo} bottomMargin={!data.stack} sanityImage={data?.image?.desktopFeatured}/>
+        <ArticleImageInline videosrc={data.video?.video} bottomMargin={!data.stack} sanityImage={data?.image}/>
       );
-
     if(data.image)
       return (
-        <ArticleImage100 sanityImage={data.image.desktopFeatured} bottomMargin={!data.stack}/>
+        <ArticleImageInline sanityImage={data.image} bottomMargin={!data.stack}/>
+      );
+    
+    return null;
+  },
+  articleImage100: (data:any) => {
+    if(data.video.video)
+      return (
+        <ArticleImage100 videosrc={data.video?.video} bottomMargin={!data.stack} sanityImage={data?.image}/>
+      );
+    if(data.image)
+      return (
+        <ArticleImage100 sanityImage={data.image} bottomMargin={!data.stack}/>
       );
     
     return null;
@@ -69,7 +80,7 @@ export const articleBuilder = (modules:any) => {
   let components:any = [];
   if(!modules || modules.length === 0)
     return components;
-    
+  
   modules.forEach((module:any) => {
     if (module && moduleSelector[module._type as keyof typeof moduleSelector]) {
       components.push(moduleSelector[module._type as keyof typeof moduleSelector](module));
@@ -120,6 +131,12 @@ const Wrapper = styled(Margin)`
   
 `
 
+const ContainSection = styled(Margin)`
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+`
+
 export const ArticleImage100 = ({
   src,
   sanityImage,
@@ -128,7 +145,6 @@ export const ArticleImage100 = ({
   bottomMargin,
   ...props
 }: ArticleImage100Props) => {
-
   return (
     <Wrapper
       noBottom={bottomMargin ? false : true}
@@ -137,9 +153,31 @@ export const ArticleImage100 = ({
       { videosrc ?
         <VideoPlayer videosrc={videosrc} thumbnail={sanityImage}/>
       : sanityImage ?
-        <ResponsiveImage image={sanityImage} alt={sanityImage.alt}/>
+        <ResponsiveImage image={sanityImage}/>
       : null}
     </Wrapper>
+  );
+};
+
+export const ArticleImageInline = ({
+  src,
+  sanityImage,
+  alt,
+  videosrc,
+  bottomMargin,
+  ...props
+}: ArticleImage100Props) => {
+  return (
+    <ContainSection
+      noBottom={bottomMargin ? false : true}
+      {...props}
+    >
+      { videosrc ?
+        <VideoPlayer videosrc={videosrc} thumbnail={sanityImage}/>
+      : sanityImage ?
+        <ResponsiveImage image={sanityImage}/>
+      : null}
+    </ContainSection>
   );
 };
 
@@ -285,14 +323,6 @@ export const ArticlePullQuote = ({
   )
 }
 
-const BodyTextWrapper = styled.div`
-  grid-column: span 6;
-
-  ${media.large`
-    grid-column: 7 / span 6;
-  `}
-`
-
 interface ArticleBodyTextProps {
   content: any,
 }
@@ -302,12 +332,8 @@ export const ArticleBodyText = ({
   ...props
 }: ArticleBodyTextProps) => {
   return (
-    <Wrapper {...props}>
-      <FullGrid>
-        <BodyTextWrapper>
-          <SanityPortable blocks={content}/>
-        </BodyTextWrapper>
-      </FullGrid>
-    </Wrapper>
+    <ContainSection {...props}>
+      <SanityPortable blocks={content}/>
+    </ContainSection>
   )
 }

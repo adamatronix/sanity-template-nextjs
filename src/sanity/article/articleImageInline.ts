@@ -1,10 +1,10 @@
 import {ImageIcon} from '@sanity/icons'
 import {defineType} from 'sanity'
 
-export const articleImage90 = defineType({
-  name: "articleImage90",
+export const articleImageInline = defineType({
+  name: "articleImageInline",
   type: "object",
-  title: "Article Image 90",
+  title: "Article Image Inline",
   fields: [
     {
       title: 'Stack',
@@ -33,7 +33,7 @@ export const articleImage90 = defineType({
     },
     prepare() {
       return {
-        title: 'Image 90',
+        title: 'Image Inline',
         icon: ImageIcon
       }
     }
