@@ -1,3 +1,4 @@
+export * from './articleAuthorType'
 export * from './articleCarousel'
 export * from './articleCopyBody'
 export * from './articleImage50'

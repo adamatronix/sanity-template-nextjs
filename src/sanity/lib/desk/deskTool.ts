@@ -11,6 +11,15 @@ import {DefaultDocumentNodeResolver} from 'sanity/desk'
 export const deskTool = definePlugin(() => {
   const {name: _, ...base} = baseDeskTool({
     defaultDocumentNode,
+    structure: (S:any) => { 
+      return  S.list()
+          .title('Content')
+          .items([
+              ...S.documentTypeListItems().filter(
+                (item:any) => item.getId() !== 'author'
+              ),
+          ])
+      }
   })
 
   return {
