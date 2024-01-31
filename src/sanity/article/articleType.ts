@@ -6,13 +6,18 @@ export const articleType = defineType({
   name: 'article',
   title: 'Article',
   icon: DocumentTextIcon,
-
   fields: [
     defineField({
       name: "publishedAt",
       type: "datetime",
       title: "Published at",
       description: "This can be used to schedule post for publishing",
+    }),
+    defineField({
+      title: 'Author',
+      name: 'author',
+      type: 'reference',
+      to: [{type: 'author'}]
     }),
     defineField({
       type: 'string',
