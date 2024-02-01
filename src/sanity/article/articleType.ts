@@ -26,6 +26,14 @@ export const articleType = defineType({
       to: [{type: 'category'}]
     }),
     defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'tags',
+      options: {
+        includeFromRelated: 'tags'
+      }
+    }),
+    defineField({
       type: 'string',
       name: 'title',
       title: 'Title',
