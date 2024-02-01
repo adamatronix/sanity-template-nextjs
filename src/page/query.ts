@@ -40,6 +40,44 @@ export const PAGE_PATHS_QUERY = groq`
   }
 `
 
+export const ARTICLE_SEARCH_DATA_QUERY = groq`
+*[_type == "article" && _score > 0]
+| score(
+  title match $searchQuery
+  || title match $searchQuery + "*"
+  || title match "*" + $searchQuery
+  || subtitle match $searchQuery
+  || subtitle match $searchQuery + "*"
+  || subtitle match "*" + $searchQuery
+  || pt::text(pageBuilder[].articleCopyBody) match $searchQuery
+  || pt::text(pageBuilder[].articleCopyBody) match $searchQuery + "*"
+  || pt::text(pageBuilder[].articleCopyBody) match "*" + $searchQuery
+) 
+| order(_score desc) [0...5] 
+{
+    publishedAt,
+    title,
+    subtitle,
+    'slug': slug.current,
+    summary {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+  }
+`
+
 export const ALL_ARTICLE_DATA_QUERY = groq`
   *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
     publishedAt,

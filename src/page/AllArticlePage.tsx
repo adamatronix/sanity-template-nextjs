@@ -1,5 +1,6 @@
 import { ArticleSummary } from 'components/Article/ArticleSummary'
 import styled from 'styled-components';
+import { ArticleSearchBar } from 'components/Article/ArticleSearchBar';
 
 import {ArticleSummaryData} from './types'
 
@@ -16,10 +17,13 @@ export function AllArticlePage(props: {data: ArticleSummaryData[] | null}) {
 
   console.log(data);
   return (
-    <Grid>
-      { data && data.map((summary:ArticleSummaryData,i:number) => {
-        return <ArticleSummary key={i} data={summary}/>
-      }) }
-    </Grid>
+    <>
+      <ArticleSearchBar />
+      <Grid>
+        { data && data.map((summary:ArticleSummaryData,i:number) => {
+          return <ArticleSummary key={i} data={summary}/>
+        }) }
+      </Grid>
+    </>
   )
 }
