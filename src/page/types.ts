@@ -20,6 +20,7 @@ export interface ArticleData {
   subtitle?: string
   summary?: any
   hero?: any
+  related?: ArticleSummaryData[]
   articleModules?: any[]
 }
 
