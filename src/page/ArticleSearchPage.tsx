@@ -2,9 +2,9 @@ import { ArticleSummary } from 'components/Article/ArticleSummary'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import styled from 'styled-components';
+
 import {client} from '../sanity/client'
 import { ARTICLE_SEARCH_DATA_QUERY } from './query';
-
 import {ArticleSummaryData} from './types'
 
 

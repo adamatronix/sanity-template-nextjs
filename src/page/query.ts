@@ -78,8 +78,12 @@ export const ARTICLE_SEARCH_DATA_QUERY = groq`
   }
 `
 
-export const ALL_ARTICLE_DATA_QUERY = groq`
-  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)]{
+export const MORE_ARTICLE_DATA_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && (
+    publishedAt < $lastPublishedAt
+    || (publishedAt == $lastPublishedAt && _id > $lastId)
+  )] | order(publishedAt desc) [0...4]{
+    _id,
     publishedAt,
     title,
     subtitle,
@@ -103,8 +107,74 @@ export const ALL_ARTICLE_DATA_QUERY = groq`
   }
 `
 
+export const COUNT_ALL_ARTICLE_QUERY = groq`
+  count(*[_type == "article"] && defined(slug.current) && dateTime(now()) > dateTime(publishedAt))
+`
+
+export const ALL_ARTICLE_DATA_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt)] | order(publishedAt desc) [0...4]{
+    _id,
+    publishedAt,
+    title,
+    subtitle,
+    'slug': slug.current,
+    summary {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+  }
+`
+
+export const COUNT_CATEGORY_ARTICLE_QUERY = groq`
+  count(*[_type == "article" && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && category._ref in *[_type == 'category' && slug.current == $slug]._id])
+`
+
+
 export const ARTICLE_CATEGORY_DATA_QUERY = groq`
   *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && category._ref in *[_type == 'category' && slug.current == $slug]._id]{
+    _id,
+    publishedAt,
+    title,
+    subtitle,
+    'slug': slug.current,
+    summary {
+      mobileFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      },
+      desktopFeatured {
+        alt,
+        asset->{
+          ...,
+          metadata
+        }
+      }
+    },
+  }
+`
+
+
+export const MORE_CATEGORY_ARTICLE_DATA_QUERY = groq`
+  *[_type == 'article' && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && category._ref in *[_type == 'category' && slug.current == $slug]._id && (
+    publishedAt < $lastPublishedAt
+    || (publishedAt == $lastPublishedAt && _id > $lastId)
+  )] | order(publishedAt desc) [0...4]{
+    _id,
     publishedAt,
     title,
     subtitle,

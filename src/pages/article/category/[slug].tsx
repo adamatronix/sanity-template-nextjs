@@ -3,13 +3,14 @@ import {PreviewSuspense} from 'next-sanity/preview'
 import {AllArticlePage} from 'page/AllArticlePage'
 import {LazyPreviewPage} from 'page/LazyPreviewPage'
 import {LoadingScreen} from 'page/LoadingScreen'
-import {ARTICLE_CATEGORY_DATA_QUERY, ARTICLE_CATEGORY_PATHS_QUERY} from 'page/query'
+import {ARTICLE_CATEGORY_DATA_QUERY, ARTICLE_CATEGORY_PATHS_QUERY, COUNT_CATEGORY_ARTICLE_QUERY} from 'page/query'
 import {ArticleSummaryData} from 'page/types'
 
 import {client} from '../../../sanity/client'
 
 interface PageProps {
   data: ArticleSummaryData[] | null
+  total: number | null
   preview: boolean
   slug: string | null
   token: string | null
@@ -30,6 +31,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query, PreviewData> = asy
     return {
       props: {
         data: null,
+        total: null,
         preview,
         slug: params?.slug || null,
         token: previewData.token,
@@ -38,10 +40,12 @@ export const getStaticProps: GetStaticProps<PageProps, Query, PreviewData> = asy
   }
 
   const data = await client.fetch<ArticleSummaryData[] | null>(ARTICLE_CATEGORY_DATA_QUERY, params)
+  const total = await client.fetch<number | null>(COUNT_CATEGORY_ARTICLE_QUERY, params)
 
   return {
     props: {
       data,
+      total,
       preview,
       slug: params?.slug || null,
       token: null,
@@ -56,7 +60,7 @@ export const getStaticPaths = async () => {
 }
 
 export default function Page(props: PageProps) {
-  const {data, preview, slug, token} = props
+  const {data, total, preview, slug, token} = props
 
   if (preview) {
     return (
@@ -66,5 +70,5 @@ export default function Page(props: PageProps) {
     )
   }
 
-  return <AllArticlePage data={data} />
+  return <AllArticlePage data={data} total={total || 0} slug={slug} type='category'/>
 }

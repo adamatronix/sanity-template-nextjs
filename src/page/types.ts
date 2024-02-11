@@ -24,6 +24,7 @@ export interface ArticleData {
 }
 
 export interface ArticleSummaryData {
+  _id:string
   publishedAt?: string
   slug?: {current?: string}
   title: string
