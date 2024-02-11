@@ -21,7 +21,6 @@ export function AllArticlePage(props: {data: ArticleSummaryData[] | null, total:
   const loadMore = useCallback(() => {
     const fetchData = async (lastPublishedAt:any,lastId:any) => {
       const data = await client.fetch<ArticleSummaryData[] | null>( type === 'category' ? MORE_CATEGORY_ARTICLE_DATA_QUERY : MORE_ARTICLE_DATA_QUERY, { lastPublishedAt: lastPublishedAt, lastId: lastId, slug: slug || '' })
-      console.log(data);
 
       if(data && data.length > 0) {
         setResults(oldResults => {
