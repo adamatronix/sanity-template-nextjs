@@ -44,7 +44,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query, PreviewData> = asy
   const data = await client.fetch<ArticleSummaryData[] | null>(ALL_ARTICLE_DATA_QUERY, params)
   const total = await client.fetch<number | null>(COUNT_ALL_ARTICLE_QUERY)
 
-  console.log(total);
   return {
     props: {
       data,

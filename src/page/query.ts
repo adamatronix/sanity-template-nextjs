@@ -231,6 +231,29 @@ export const ARTICLE_DATA_QUERY = groq`
         }
       }
     },
+    "related": *[_type == "article" && defined(slug.current) && dateTime(now()) > dateTime(publishedAt) && category._ref == ^.category._ref && _id != ^._id] | order(publishedAt desc) [0..2] {
+      _id,
+      publishedAt,
+      title,
+      subtitle,
+      'slug': slug.current,
+      summary {
+        mobileFeatured {
+          alt,
+          asset->{
+            ...,
+            metadata
+          }
+        },
+        desktopFeatured {
+          alt,
+          asset->{
+            ...,
+            metadata
+          }
+        }
+      },
+    },
     articleModules[] {
       _type == 'articleCarousel' => {
          _key,
