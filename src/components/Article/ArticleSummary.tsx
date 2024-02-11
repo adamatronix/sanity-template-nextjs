@@ -35,12 +35,21 @@ export const ArticleSummary = ({
   data,
   ...props
 }: ArticleSummaryProps) => {
+  let date;
+  if(data.publishedAt){
+    date = new Date(data.publishedAt).toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
 
   return (
     <Wrapper href={`/article/${data.slug}`} {...props}>
       <ImageWrapper>
         <ResponsiveImage image={data.summary} isCover/>
       </ImageWrapper>
+      { date || null}
       <Title>{data.title}</Title>
       <Short>{data.subtitle}</Short>
       Read More
