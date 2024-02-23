@@ -1,7 +1,7 @@
 import {GetStaticProps} from 'next'
 import {PreviewSuspense} from 'next-sanity/preview'
 import {ArticlePage} from 'page/ArticlePage'
-import {LazyPreviewPage} from 'page/LazyPreviewPage'
+import { LazyPreviewArticle } from 'page/LazyPreviewArticle'
 import {LoadingScreen} from 'page/LoadingScreen'
 import {ARTICLE_DATA_QUERY, ARTICLE_PATHS_QUERY} from 'page/query'
 import {ArticleData} from 'page/types'
@@ -62,7 +62,7 @@ export default function Page(props: PageProps) {
   if (preview) {
     return (
       <PreviewSuspense fallback={<LoadingScreen>Loading preview…</LoadingScreen>}>
-        <LazyPreviewPage slug={slug} token={token} />
+        <LazyPreviewArticle slug={slug} token={token} />
       </PreviewSuspense>
     )
   }

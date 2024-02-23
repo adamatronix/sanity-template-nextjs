@@ -49,6 +49,13 @@ const handler: NextApiHandler = async function preview(req, res) {
     return
   }
 
+  if (type === 'article' && slug) {
+    res.setPreviewData({token: readToken})
+    res.writeHead(307, {Location: `/article/${slug}`})
+    res.end()
+    return
+  }
+
   res.status(404)
   res.end()
 }
