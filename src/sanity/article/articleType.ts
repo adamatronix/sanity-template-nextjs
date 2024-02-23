@@ -1,11 +1,37 @@
 import {DocumentTextIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType,isRecord,isString} from 'sanity'
+import { ArticlePreview } from './ArticlePreview'
+import {previewSecretId} from '../constants'
+import {apiVersion} from '../env'
+import {getSecret} from '../secret'
 
 export const articleType = defineType({
   type: 'document',
   name: 'article',
   title: 'Article',
   icon: DocumentTextIcon,
+  options: {
+    views(S) {
+      return [S.view.form().title('Content'), S.view.component(ArticlePreview).title('Preview')]
+    },
+    async url(ctx) {
+      const {_id: id, _type: type, slug} = ctx.document
+      const currentSlug = isRecord(slug) && isString(slug.current) ? slug.current : undefined
+
+      if (!currentSlug) return undefined
+
+      const client = ctx.getClient({apiVersion})
+      const secret = await getSecret({
+        client,
+        id: previewSecretId,
+        createIfNotExists: true,
+      })
+
+      if (!secret) return undefined
+
+      return `/api/sanity/preview?type=${type}&id=${id}&slug=${currentSlug}&secret=${secret}`
+    },
+  },
   fields: [
     defineField({
       name: "publishedAt",
